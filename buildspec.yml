@@ -2,8 +2,11 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: 3.12
+    commands:
+      - echo "Installing Python 3.12..."
+      - sudo apt-get update && sudo apt-get install -y python3.12 python3.12-distutils
+      - python3.12 --version
+      - ln -sf /usr/bin/python3.12 /usr/bin/python
   build:
     commands:
       - echo Installing dependencies...
