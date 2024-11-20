@@ -1,3 +1,6 @@
 aiohttp
 pandas
 asyncio
+aiofiles
+mashumaro
+PyJWT
