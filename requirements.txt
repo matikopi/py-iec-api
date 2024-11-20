@@ -4,4 +4,4 @@ asyncio
 aiofiles
 mashumaro
 PyJWT
-numpy
+numpy==2.1.2
