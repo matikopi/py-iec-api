@@ -3,10 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing Python 3.8..."
-      - sudo apt-get update && sudo apt-get install -y python3.8 python3.8-distutils
-      - python3.8 --version
-      - ln -sf /usr/bin/python3.8 /usr/bin/python
+      - echo "Installing Python 3.13..."
+      - sudo apt-get update && sudo apt-get install -y python3.13 python3.13-distutils
+      - python3.13 --version
+      - ln -sf /usr/bin/python3.13 /usr/bin/python
   build:
     commands:
       - echo Installing dependencies...
@@ -17,3 +17,6 @@ phases:
       - aws s3 cp function.zip s3://deploy-github-repo/function.zip
       - echo Updating Lambda function...
       - aws lambda update-function-code --function-name get_and_process_iec_user_data --s3-bucket deploy-github-repo --s3-key function.zip
+cache:
+  paths:
+    - '/root/.cache/pip
