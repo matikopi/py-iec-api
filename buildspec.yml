@@ -17,6 +17,3 @@ phases:
       - aws s3 cp function.zip s3://deploy-github-repo/function.zip
       - echo Updating Lambda function...
       - aws lambda update-function-code --function-name get_and_process_iec_user_data --s3-bucket deploy-github-repo --s3-key function.zip
-cache:
-  paths:
-    - '/root/.cache/pip
