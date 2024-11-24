@@ -1,6 +1,48 @@
+"""Response Descriptor"""
+
+from dataclasses import dataclass, field
+from typing import Generic, Optional, TypeVar
+
+from mashumaro import DataClassDictMixin, field_options
+
+
+@dataclass
+class ResponseDescriptor(DataClassDictMixin):
+    """Response Descriptor"""
+
+    is_success: bool = field(metadata=field_options(alias="isSuccess"))
+    code: Optional[str] = None
+    description: Optional[str] = None
+
+
+@dataclass
+class ErrorResponseDescriptor(DataClassDictMixin):
+    """Error Response Descriptor"""
+
+    error: str = field(metadata=field_options(alias="Error"))
+    code: int = field(metadata=field_options(alias="Code"))
+    rid: str = field(metadata=field_options(alias="Rid"))
+
+
+RESPONSE_DESCRIPTOR_FIELD = "reponseDescriptor"
+
+
+T = TypeVar("T")
+
+
+@dataclass
+class ResponseWithDescriptor(Generic[T], DataClassDictMixin):
+    """Response With Descriptor"""
+
+    response_descriptor: ResponseDescriptor = field(metadata=field_options(alias=RESPONSE_DESCRIPTOR_FIELD))
+    data: Optional[T] = None
+iec_api/models/response_descriptor.py
+New
+8:04
 """Electric Bills."""
 
 from dataclasses import dataclass, field
+from typing import Optional
 
 from mashumaro import DataClassDictMixin, field_options
 from mashumaro.codecs import BasicDecoder
@@ -47,8 +89,8 @@ from iec_api.models.response_descriptor import ResponseWithDescriptor
 class ElectricBill(DataClassDictMixin):
     total_amount_to_pay: float = field(metadata=field_options(alias="totalAmountToPay"))
     total_invoices_to_pay: int = field(metadata=field_options(alias="totalInvoicesToPay"))
-    last_date_to_pay: str = field(metadata=field_options(alias="lastDateToPay"))
     invoices: list[Invoice]
+    last_date_to_pay: Optional[str] = field(metadata=field_options(alias="lastDateToPay"), default=None)
 
 
 decoder = BasicDecoder(ResponseWithDescriptor[ElectricBill])
