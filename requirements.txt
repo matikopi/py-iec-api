@@ -6,4 +6,4 @@ mashumaro
 PyJWT
 numpy
 pkce
-git+https://github.com/GuyKh/py-iec-api.git@main#egg=py-iec-api-2
+git+https://github.com/GuyKh/py-iec-api.git@main#egg=iec-api
