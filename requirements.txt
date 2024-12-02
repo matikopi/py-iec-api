@@ -6,4 +6,7 @@ mashumaro
 PyJWT
 numpy
 pkce
+sklearn
+matplotlib
+calendar
 git+https://github.com/GuyKh/py-iec-api.git@main#egg=iec-api
